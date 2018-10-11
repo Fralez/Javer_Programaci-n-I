@@ -2,8 +2,8 @@
 public class Matrix {
 	
 	public static String[][] crearMatriz(int rows, int cols) {
-		String[][] matriz = new String[rows][cols]; //Crea una matriz bidimensional de valores de tipo String
-			
+		String[][] matriz = new String[rows][cols]; //Crea una array bidimensional de valores de tipo String
+		
 		//Retorna la matriz bidimensional que creó y llenó
 		return matriz;
 	}

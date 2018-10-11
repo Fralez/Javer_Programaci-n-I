@@ -7,7 +7,7 @@ public class Menu {
 		boolean menu = true;
 		while (menu) {
 			Custom.printMensaje("¿Cómo puedo ayudarle?");
-			Custom.printMensaje("1 - Opción 1");
+			Custom.printMensaje("1 - Ingresar nueva clase y datos de los alumnos");
 			Custom.printMensaje("2 - Opción 2");
 			Custom.printMensaje("3 - Opción 3");
 			Custom.printMensaje("0 - Salir");
