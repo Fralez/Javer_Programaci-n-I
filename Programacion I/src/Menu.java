@@ -1,6 +1,7 @@
 public class Menu {
 	
-	public static void displayMenu() {
+	public static void displayMenu(String etiqueta, String[] asignaturas) {		
+
 		//En este método se imprime el menú en la consola
 		Custom.printMensaje("Bienvenido al gestor de alumnos Javer!");
 		
@@ -15,13 +16,13 @@ public class Menu {
 			
 			switch (opcion) {
 				case "1":
-					Opciones.opcionUno();
+					String[][] opcion1 = Opciones.opcionUno(etiqueta, asignaturas);
 					break;
 				case "2":
-					Opciones.opcionDos();
+					String[][] opcion2 = Opciones.opcionDos(etiqueta, asignaturas);
 					break;
 				case "3":
-					Opciones.opcionTres();
+					Opciones.opcionTres(etiqueta);
 					break;
 				case "0":
 					menu = false;

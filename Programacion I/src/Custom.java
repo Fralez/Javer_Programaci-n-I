@@ -5,7 +5,6 @@ public class Custom {
 	
 	public static String scanStringInput() {
 		
-		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		String variable = scan.nextLine();
 		
@@ -13,8 +12,7 @@ public class Custom {
 	}
 	
 	public static int scanIntInput() {
-
-		@SuppressWarnings("resource")
+		
 		Scanner scan = new Scanner(System.in);
 		int variable = scan.nextInt();
 		

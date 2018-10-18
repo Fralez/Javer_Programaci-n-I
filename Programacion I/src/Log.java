@@ -59,7 +59,6 @@ public class Log {
 			if ((esUsuario && esContraseña) && (etiquetaEsUsuario.equals(etiquetaEsContraseña))) {
 				estaLoggeado = true;
 				etiqueta = etiquetaEsUsuario;
-				System.out.println("La etiqueta es: " + etiqueta);
 				
 			} else { //si no, incrementará el contador
 				Custom.printMensaje("Lo siento, el usuario o la contraseña no son correctos :/");
