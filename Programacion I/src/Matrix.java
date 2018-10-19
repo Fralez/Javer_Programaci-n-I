@@ -8,6 +8,13 @@ public class Matrix {
 		return matriz;
 	}
 	
+	public static String[][][] crearMatrizTri(int rows, int cols, int height) {
+		String[][][] matriz = new String[rows][cols][height]; //Crea una array bidimensional de valores de tipo String
+		
+		//Retorna la matriz bidimensional que creó y llenó
+		return matriz;
+	}
+	
 	//Sub-método de Crear Matriz
 	public static void llenarUsuario(String[][] matriz, int lugarDeUsuario, String usuario, String contraseña, String etiqueta) {
 		
