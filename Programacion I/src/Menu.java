@@ -5,6 +5,9 @@ public class Menu {
 		//En este método se imprime el menú en la consola
 		Custom.printMensaje("Bienvenido al gestor de alumnos Javer!");
 		
+		String[][] opcion1 = {};
+		String[][][] opcion2 = {};
+		
 		boolean menu = true;
 		while (menu) {
 			Custom.printMensaje("¿Cómo puedo ayudarle?");
@@ -14,26 +17,17 @@ public class Menu {
 			Custom.printMensaje("0 - Salir");
 			String opcion = Custom.scanStringInput();
 			
-			boolean entroOpcion1 = false;
-			boolean entroOpcion2 = false;
-			String[][] opcion1 = {};
-			String[][][] opcion2 = {};
+			
 			
 			switch (opcion) {
 				case "1":
-					entroOpcion1 = true;
 					opcion1 = Opciones.opcionUno(etiqueta, asignaturas);
 					break;
 				case "2":
-					entroOpcion2 = true;
 					opcion2 = Opciones.opcionDos(etiqueta, asignaturas);
 					break;
 				case "3":
-					if (entroOpcion1 || entroOpcion2) {
-						Opciones.opcionTres(opcion1, opcion2);
-					} else {
-						Custom.printMensaje("Para entrar a esta opción debe al menos haber entrado a una de las otras dos!!");
-					}
+					Opciones.opcionTres(opcion1, opcion2, asignaturas);
 					break;
 				case "0":
 					menu = false;
