@@ -227,7 +227,7 @@ public class Opciones {
 		/**
 		 * Falta:
 		 * Promedio Individual |X|
-		 * Promedio General de Clase Por Materia | |
+		 * Promedio General de Clase Por Materia |X|
 		 * Alumno con mayor promedio (Indicar nombre y promedio) | |
 		 * Juicio Correspondiente (En base al promedio) | |
 		 */
@@ -235,28 +235,35 @@ public class Opciones {
 		//Promedios individuales de la opción 1
 		String[][] PromediosIndividualesOpcion1 = new String[opcion1.length][2]; //0: Nombre - 1: Promedio
 		
-		//Promedios generales por materia de la opción 1
-		String[][] PromediosGeneralesPorMateriaOpcion1 = new String[13][2]; //0: Materia - 1: Promedio
 		
 		//Alumno con mayor promedio de la opción 1
 		String[][] AlumnoMayorPromedioOpcion1 = new String[1][2]; //0: Nombre - 1: Promedio
 		
-		//Mostrar opción 1
+		
+		//Mostrar opción 1 -- Calcular promedio individual
 		Custom.printMensaje("Clase ingresada en la opción 1");
+		
 		for (int i = 0; i < opcion1.length; i++) {
+			
 			System.out.println("Alumno: " + i);
-			int counterFinalMateriasI = i + 1; //Este counter sirve para saber cuál es el último recorrido del for grande //CHECK
+			
 			int promedio = 0; //Inicializamos la variable que contendrá el promedio
-			int promedioMaterias = 0; //Inicializamos la variable que contendrá el promedio por materia
+			
 			for (int j = 0; j < opcion1[i].length; j++) {
+				
 				int counterFinal = j + 1; //Este counter sirve para saber cuál es el último recorrido del for
+				
 				if (j == 0) {
 					System.out.println("Nombre: " + opcion1[i][j]);
+				
 					Custom.printMensaje("");
+					
 					PromediosIndividualesOpcion1[i][0] = opcion1[i][j]; //Agrego el nombre a la casilla correspondiente de promedios
 				} else {
 					System.out.println("Nota numero " + j + ": " + opcion1[i][j]);
+					
 					Custom.printMensaje("");
+					
 					//Ahora hay que parsear todas las notas a int, hacer el promedio y después pushearla al array
 					int notaPromedial = Integer.parseInt(opcion1[i][j]);
 					promedio += notaPromedial;
@@ -268,24 +275,53 @@ public class Opciones {
 						PromediosIndividualesOpcion1[i][1] = promedioParseado;
 
 						System.out.println("Promedio del alumno " + PromediosIndividualesOpcion1[i][0] + ": " + PromediosIndividualesOpcion1[i][1]);
+						//System.out.println("Fallo del alumno: " + FalloMethodOp1); //TODO
 					}
-					//Materia's Code...
-					
 				}
-				
-				
 			}
 			//Para denotar los distintos alumnos
 			System.out.println("************************************************************************************************************");
+		}
+		
+		//Calcular promedio por materia opción 1
+
+		//Promedios generales por materia de la opción 1
+		String[][] PromediosGeneralesPorMateriaOpcion1 = new String[13][2]; //0: Materia - 1: Promedio
+		
+		for (int i = 0; i <= 13; i++) { //13 por la cantidad de materias
+
+			int promedioMat = 0; //Inicializamos el promedio por materia
+			
+			int materiaElegida = i - 1;
+			
+			for (int j = 0; j < opcion1.length; j++) {
+
+				int counterFinalMat = j + 1; //Contador para identificar la ultima recorrida del for
+				
+				if (i == 0) {
+					// PromediosGeneralesPorMateriaOpcion1[j][0] = opcion1[j][i];					
+				} else {
+					//Para interar sobre las MATERIAS por encima de ALUMNOS, cambiamos el lugar de las variables de iteracion i y j
+
+					int matNotaPromedial = Integer.parseInt(opcion1[j][i]);
+					promedioMat += matNotaPromedial;
+					
+					if (counterFinalMat == opcion1.length) {
+						promedioMat = promedioMat / opcion1.length;
+						String promedioMatParseado = Integer.toString(promedioMat);
+						
+						PromediosGeneralesPorMateriaOpcion1[i - 1][1] = promedioMatParseado;
+						
+						System.out.println("Promedio De la materia de " + asignaturas[i-1][0] + ": " + PromediosGeneralesPorMateriaOpcion1[i - 1][1]);
+					}
+				}
+			}
 		}
 
 		
 		
 		//Promedios individuales de la opción 2
 		String[][] PromediosIndividualesOpcion2 = new String[opcion2.length][2]; //Nombre - Promedio
-		
-		//Promedios generales por materia de la opción 2
-		String[][] PromediosGeneralesPorMateriaOpcion2 = new String[1][2]; //Materia - Promedio
 		
 		//Alumno con mayor promedio de la opción 2
 		String[][] AlumnoMayorPromedioOpcion2 = new String[1][2]; //Nombre - Promedio
@@ -315,7 +351,8 @@ public class Opciones {
 						String promedioParseado = Integer.toString(promedioCalculado);
 
 						PromediosIndividualesOpcion2[i][1] = promedioParseado;
-						System.out.println("Promedios individual del alumno " + PromediosIndividualesOpcion2[i][0] + ": " + PromediosIndividualesOpcion2[i][1]);
+						System.out.println("Promedios del alumno " + PromediosIndividualesOpcion2[i][0] + ": " + PromediosIndividualesOpcion2[i][1]);
+						//System.out.println("Fallo del alumno: " + FalloMethodOp2); //TODO
 					}
 					
 				}
@@ -324,6 +361,39 @@ public class Opciones {
 			System.out.println("************************************************************************************************************");
 		}
 		
+		//Calcular promedio por materia opción 2
+
+		//Promedios generales por materia de la opción 2
+		String[][] PromediosGeneralesPorMateriaOpcion2 = new String[13][2]; //0: Materia - 1: Promedio
+		
+		for (int i = 0; i <= 13; i++) { //13 por la cantidad de materias
+
+			int promedioMat = 0; //Inicializamos el promedio por materia
+			
+			int materiaElegida = i - 1;
+				
+			for (int j = 0; j < opcion2.length; j++) {
+
+				int counterFinalMat = j + 1; //Contador para identificar la ultima recorrida del for
+					
+				if (i == 0) {
+					//Para interar sobre las MATERIAS por encima de ALUMNOS, cambiamos el lugar de las variables de iteracion i y j
+					
+					int matNotaPromedial = Integer.parseInt(opcion2[j][i][0]);
+					promedioMat += matNotaPromedial;
+					
+					if (counterFinalMat == opcion2.length) {
+						promedioMat = promedioMat / opcion2.length;
+						String promedioMatParseado = Integer.toString(promedioMat);
+							
+						PromediosGeneralesPorMateriaOpcion2[i - 1][1] = promedioMatParseado;
+							
+						System.out.println("Promedio De la materia de " + asignaturas[i-1][0] + ": " + PromediosGeneralesPorMateriaOpcion2[i - 1][1]);
+					}	
+				}
+			}
+		}
+	
 	}
 	
 	
@@ -334,47 +404,6 @@ public class Opciones {
 		
 		return null;
 	}
-	
-	//Do not Touch c:
-	/*
-	{
-		//STORE
-		PromediosGeneralesPorMateriaOpcion1[j][0] = Integer.toString(j); //Primero Guardo el número ID de la materia
-		
-		if (counterFinalMateriasI == 1) { //Si hay materia antes:
-			PromediosGeneralesPorMateriaOpcion1[j][1] = "0";
-		}
-		
-		int notaMateriaAntes = Integer.parseInt(PromediosGeneralesPorMateriaOpcion1[j][1]); //Llamo a lo que tenía la materia antes
-		System.out.println("Nota materia antes: " + notaMateriaAntes); //CHECKTEST
-		System.out.println("");
-		
-		int notaPromedialMaterias = Integer.parseInt(opcion1[i][j]); //Nota a promediar
-		System.out.println("Nota a promediar: " + notaPromedialMaterias); //CHECKTEST
-		System.out.println("");
-		
-		promedioMaterias += notaMateriaAntes + notaPromedialMaterias; //Promedio por materia sumado a la anterior nota
-		System.out.println("Promedio materias: " + promedioMaterias); //CHECKTEST
-		System.out.println("");
-		
-		String promedioMateriasParseado = Integer.toString(promedioMaterias);
-		PromediosGeneralesPorMateriaOpcion1[j][1] = promedioMateriasParseado;
-		System.out.println("MATERIA NUMERO " + j + ": " + "Como termina el promedio g. materia: " + PromediosGeneralesPorMateriaOpcion1[j][1]);
-		
-		System.out.println("Mas o menos llegue hasta aca 1 vez");
-		
-		if(counterFinal == opcion1[i].length) { //ANTES de terminar el alumno
-			int notaFinalMateria = Integer.parseInt(PromediosGeneralesPorMateriaOpcion1[j][1]); //Llamo a la suma de todas las notas de todos los alumnos de la materia
-			int promedioCalculado = notaFinalMateria / opcion1.length; //Promedio por materia pero dividido entre los alumnos
-			String promedioParseadoMateria = Integer.toString(promedioCalculado);
-			PromediosGeneralesPorMateriaOpcion1[j][1] = promedioParseadoMateria; //Guardo la nota de la materia
-			
-			System.out.println("Promedio de la materia número " + PromediosGeneralesPorMateriaOpcion1[j][0] + ": " + PromediosGeneralesPorMateriaOpcion1[j][1]);
-		}
-		
-	}
-	*/
-	
 	
 	
 	
