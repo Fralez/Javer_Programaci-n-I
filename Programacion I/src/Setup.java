@@ -9,7 +9,7 @@ public class Setup {
 			switch (i) {
 				case 0:
 					//Este usuario es especial, se utiliza para manejar las acciones root y tiene una etiqueta especial: Admin.
-					Matrix.llenarUsuario(matriz, i, "root", "root", "Admin");
+					Matrix.llenarUsuario(matriz, i, "root", "root", "Adscripto");
 					break;
 				case 1:
 					Matrix.llenarUsuario(matriz, i, "FraqueDanilo", "fraquito123", "Programación");					

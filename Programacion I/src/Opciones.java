@@ -223,7 +223,7 @@ public class Opciones {
 	//*********************************************************************************
 	//									OPCIÓN 3
 	//*********************************************************************************
-	public static void opcionTres(String[][] opcion1, String[][][] opcion2, String[][] asignaturas) {
+	public static void opcionTres(String[][] opcion1, String[][][] opcion2, String[][] asignaturas, String etiqueta) {
 		/**
 		 * Falta:
 		 * Promedio Individual |X|
@@ -235,17 +235,12 @@ public class Opciones {
 		//Promedios individuales de la opción 1
 		String[][] PromediosIndividualesOpcion1 = new String[opcion1.length][2]; //0: Nombre - 1: Promedio
 		
-		
-		//Alumno con mayor promedio de la opción 1
-		String[][] AlumnoMayorPromedioOpcion1 = new String[1][2]; //0: Nombre - 1: Promedio
-		
-		
 		//Mostrar opción 1 -- Calcular promedio individual
 		Custom.printMensaje("Clase ingresada en la opción 1");
 		
 		for (int i = 0; i < opcion1.length; i++) {
 			
-			System.out.println("Alumno: " + i);
+			System.out.println("Alumno: " + (i + 1));
 			
 			int promedio = 0; //Inicializamos la variable que contendrá el promedio
 			
@@ -275,7 +270,6 @@ public class Opciones {
 						PromediosIndividualesOpcion1[i][1] = promedioParseado;
 
 						System.out.println("Promedio del alumno " + PromediosIndividualesOpcion1[i][0] + ": " + PromediosIndividualesOpcion1[i][1]);
-						//System.out.println("Fallo del alumno: " + FalloMethodOp1); //TODO
 					}
 				}
 			}
@@ -283,7 +277,7 @@ public class Opciones {
 			System.out.println("************************************************************************************************************");
 		}
 		
-		//Calcular promedio por materia opción 1
+		//Calcular promedio por MATERIA opción 1
 
 		//Promedios generales por materia de la opción 1
 		String[][] PromediosGeneralesPorMateriaOpcion1 = new String[13][2]; //0: Materia - 1: Promedio
@@ -291,8 +285,6 @@ public class Opciones {
 		for (int i = 0; i <= 13; i++) { //13 por la cantidad de materias
 
 			int promedioMat = 0; //Inicializamos el promedio por materia
-			
-			int materiaElegida = i - 1;
 			
 			for (int j = 0; j < opcion1.length; j++) {
 
@@ -318,18 +310,45 @@ public class Opciones {
 			}
 		}
 
+		//Alumno con MAYOR promedio de la opción 1
+		
+		//Averiguar alumno con mayor promedio
+		
+		int promedioMasAlto = 1; //Guarda el supuesto promedio "más alto"
+		String nombreDeAlumno = "null"; //Guarda el nombre del alumno con el promedio más alto
+		for (int i = 0; i < PromediosIndividualesOpcion1.length; i++) {
+			if (i == 0) {
+				promedioMasAlto = Integer.parseInt(PromediosIndividualesOpcion1[i][1]); //Le da el primer valor al supuesto promedio "más alto"
+			}
+			int promedioComp = Integer.parseInt(PromediosIndividualesOpcion1[i][1]); //Guarda el promedio a comparar
+			if (promedioComp >= promedioMasAlto) { //Si el promedio es mayor, lo sustituye por el que se está comparando
+				promedioMasAlto = promedioComp;
+				nombreDeAlumno = PromediosIndividualesOpcion1[i][0]; //Guardo el nombre del alumno
+			}
+		}
+		if (!nombreDeAlumno.equals("null")) { //Si se encontró, lo muestro
+			System.out.println("El promedio más alto es del alumno " + nombreDeAlumno +  ": " + promedioMasAlto);			
+		}
+		
+		falloCorrespondiente(opcion1);
+		
+		
+		
+		
+		
+		//*******************************************************************************************************************************
+		//*******************************************************************************************************************************
 		
 		
 		//Promedios individuales de la opción 2
-		String[][] PromediosIndividualesOpcion2 = new String[opcion2.length][2]; //Nombre - Promedio
+		String[][] PromediosIndividualesOpcion2 = new String[opcion2.length][2]; //0: Nombre - 1: Promedio
 		
-		//Alumno con mayor promedio de la opción 2
-		String[][] AlumnoMayorPromedioOpcion2 = new String[1][2]; //Nombre - Promedio
+		
 		
 		//Mostrar opción 2
-		Custom.printMensaje("Clase ingresada en la opción 2");
+		Custom.printMensaje("Clase ingresada en la opción 2, con la etiqueta de: " + etiqueta);
 		for (int i = 0; i < opcion2.length; i++) {
-			System.out.println("Alumno: " + i);
+			System.out.println("Alumno: " + (i + 1));
 			int promedio = 0; //Inicializamos la variable que contendrá el promedio
 			for (int j = 0; j < opcion2[i].length; j++) {
 				int counterProm = j + 1; //Este counter sirve para saber cuándo ya están todas las notas recorridas
@@ -338,7 +357,7 @@ public class Opciones {
 					PromediosIndividualesOpcion2[i][0] = opcion2[i][j][0]; //Agrego el nombre a la casilla correspondiente
 					Custom.printMensaje("");
 				} else {
-					System.out.println("Nota numero " + j + ": " + opcion2[i][j][0]);
+					System.out.println("Nota número " + j + ": " + opcion2[i][j][0]);
 					//Ahora hay que parsear todas las notas a int, hacer el promedio y después pushearla al array
 					int notaPromedial = Integer.parseInt(opcion2[i][j][0]);
 					promedio += notaPromedial;
@@ -346,13 +365,19 @@ public class Opciones {
 					System.out.println("Inasistencias en materia " + j + ": " + opcion2[i][j][1]);
 					Custom.printMensaje("");
 					
-					if(counterProm == opcion2[i].length) {
+					if (!etiqueta.equals("Adscripto")) {
+						int promedioCalculado = promedio;
+						String promedioParseado = Integer.toString(promedioCalculado);
+						
+						PromediosIndividualesOpcion2[i][1] = promedioParseado;
+						System.out.println("Promedio del alumno " + PromediosIndividualesOpcion2[i][0] + ": " + PromediosIndividualesOpcion2[i][1]);
+					
+					} else if(counterProm == opcion2[i].length) {
 						int promedioCalculado = promedio / 13; //Promedio pero dividido entre las materias
 						String promedioParseado = Integer.toString(promedioCalculado);
 
 						PromediosIndividualesOpcion2[i][1] = promedioParseado;
-						System.out.println("Promedios del alumno " + PromediosIndividualesOpcion2[i][0] + ": " + PromediosIndividualesOpcion2[i][1]);
-						//System.out.println("Fallo del alumno: " + FalloMethodOp2); //TODO
+						System.out.println("Promedio del alumno " + PromediosIndividualesOpcion2[i][0] + ": " + PromediosIndividualesOpcion2[i][1]);
 					}
 					
 				}
@@ -366,43 +391,139 @@ public class Opciones {
 		//Promedios generales por materia de la opción 2
 		String[][] PromediosGeneralesPorMateriaOpcion2 = new String[13][2]; //0: Materia - 1: Promedio
 		
-		for (int i = 0; i <= 13; i++) { //13 por la cantidad de materias
+		boolean SoloUnaVezSiEtiqueta = false;
+		for (int i = 0; i < 13; i++) { //13 por la cantidad de materias
 
 			int promedioMat = 0; //Inicializamos el promedio por materia
-			
-			int materiaElegida = i - 1;
-				
+							
 			for (int j = 0; j < opcion2.length; j++) {
 
 				int counterFinalMat = j + 1; //Contador para identificar la ultima recorrida del for
-					
-				if (i == 0) {
+				
+				if (etiqueta.equals("Adscripto")) {
+					if (i != 0) {
+						//Para interar sobre las MATERIAS por encima de ALUMNOS, cambiamos el lugar de las variables de iteracion i y j
+						
+						int matNotaPromedial = Integer.parseInt(opcion2[j][i][0]);
+						promedioMat += matNotaPromedial;
+						
+						if (counterFinalMat == opcion2.length) {
+							promedioMat = promedioMat / opcion2.length;
+							String promedioMatParseado = Integer.toString(promedioMat);
+								
+							PromediosGeneralesPorMateriaOpcion2[i - 1][1] = promedioMatParseado;
+								
+							System.out.println("Promedio De la materia de " + asignaturas[i-1][0] + ": " + PromediosGeneralesPorMateriaOpcion2[i - 1][1]);
+						}	
+					}
+				} else {
 					//Para interar sobre las MATERIAS por encima de ALUMNOS, cambiamos el lugar de las variables de iteracion i y j
 					
-					int matNotaPromedial = Integer.parseInt(opcion2[j][i][0]);
-					promedioMat += matNotaPromedial;
+					if ((i+1 != 1) && !etiqueta.equals("Adscripto")) {						
+						int matNotaPromedial = Integer.parseInt(opcion2[j][1][0]);
+						promedioMat += matNotaPromedial;
+					} else {
+						int matNotaPromedial = Integer.parseInt(opcion2[j][i+1][0]);
+						promedioMat += matNotaPromedial;
+					}
 					
 					if (counterFinalMat == opcion2.length) {
 						promedioMat = promedioMat / opcion2.length;
 						String promedioMatParseado = Integer.toString(promedioMat);
 							
-						PromediosGeneralesPorMateriaOpcion2[i - 1][1] = promedioMatParseado;
-							
-						System.out.println("Promedio De la materia de " + asignaturas[i-1][0] + ": " + PromediosGeneralesPorMateriaOpcion2[i - 1][1]);
-					}	
+						PromediosGeneralesPorMateriaOpcion2[i][1] = promedioMatParseado;
+						
+						
+						if (etiqueta.equals("Adscripto")) {
+							System.out.println("Promedio De la materia de " + asignaturas[i][0] + ": " + PromediosGeneralesPorMateriaOpcion2[i][1]);							
+						} else if (!SoloUnaVezSiEtiqueta){
+							System.out.println("Promedio De la materia de " + etiqueta + ": " + PromediosGeneralesPorMateriaOpcion2[i][1]);
+							SoloUnaVezSiEtiqueta = true;
+						}
+					}
 				}
+				
+				
 			}
 		}
-	
+		
+		//Alumno con mayor promedio de la opción 2
+				
+		//Averiguar alumno con mayor promedio
+				
+		int promedioMasAltoOp2 = 1; //Guarda el supuesto promedio "más alto"
+		String nombreDeAlumnoOp2 = "null"; //Guarda el nombre del alumno con el promedio más alto
+		for (int i = 0; i < PromediosIndividualesOpcion2.length; i++) {
+			if (i == 0) {
+				promedioMasAltoOp2 = Integer.parseInt(PromediosIndividualesOpcion2[i][1]); //Le da el primer valor al supuesto promedio "más alto"
+			}
+			int promedioCompOp2 = Integer.parseInt(PromediosIndividualesOpcion2[i][1]); //Guarda el promedio a comparar
+			if (promedioCompOp2 >= promedioMasAltoOp2) { //Si el promedio es mayor, lo sustituye por el que se está comparando
+				promedioMasAltoOp2 = promedioCompOp2;
+				nombreDeAlumnoOp2 = PromediosIndividualesOpcion2[i][0];
+			}
+		}
+		if (!nombreDeAlumnoOp2.equals("null")) { //Si se encontró, lo muestro
+			System.out.println("El promedio más alto es del alumno " + nombreDeAlumnoOp2 +  ": " + promedioMasAltoOp2);
+		}
+			
+		falloCorrespondienteOp2(opcion2);
+
 	}
 	
 	
 	//SUB-MÉTODOS
 	
-	public String falloCorrespondiente(String promedio) {
+	public static void falloCorrespondiente(String[][] notasOp1) {
+		//NotasOp1 - 0-length: Alumno / 0: Nombre ; 1-12: Nota
+		for (int i = 0; i < notasOp1.length; i++) {
+			int materiasExoneradas = 0; //En esta variable se guardan la cantidad de materias altas
+			for (int j = 1; j < notasOp1[i].length; j++) {
+				int notaParseada = Integer.parseInt(notasOp1[i][j]);
+				if (notaParseada >= 8) { //Si la nota es mayor o igual a 8, se suma como nota exonerada
+					materiasExoneradas++;
+				}
+			}
+			//Ahora, si las materias exoneradas son mayores a la mitad más 1 de las materias (7), pase a 2ndo y cantidad de exámenes a rendir.
+			if (materiasExoneradas >= 7) {
+				Custom.printMensaje("Juicio del alumno " + notasOp1[i][0] + ": Pase a segundo año.");
+				if (materiasExoneradas == 0) {
+					System.out.println("Sin exámenes a rendir.");
+				} else {
+					System.out.println("Materias a rendir examen: " + (13 - materiasExoneradas));					
+				}
+			} else {
+				Custom.printMensaje("Juicio del alumno " + notasOp1[i][0] + ": Recurso de año.");
+			}
+		}
 		
+	}
+	
+	//Métodos de Fallos
+	
+	public static void falloCorrespondienteOp2(String[][][] notasOp2) {
+		//NotasOp1 - 0-length: Alumno / 0: Nombre ; 1-12: Nota / 0: Nota ; 1: Inasistencias
+		for (int i = 0; i < notasOp2.length; i++) {
+			int materiasExoneradas = 0; //En esta variable se guardan la cantidad de materias altas
+			for (int j = 1; j < notasOp2[i].length; j++) {
+				int notaParseada = Integer.parseInt(notasOp2[i][j][0]);
+				if (notaParseada >= 8) { //Si la nota es mayor o igual a 8, se suma como nota exonerada
+					materiasExoneradas++;
+				}
+			}
+			//Ahora, si las materias exoneradas son mayores a la mitad más 1 de las materias (7), pase a 2ndo y cantidad de exámenes a rendir.
+			if (materiasExoneradas >= 7) {
+				Custom.printMensaje("Juicio del alumno " + notasOp2[i][0][0] + ": Pase a segundo año.");
+				if (materiasExoneradas == 0) {
+					System.out.println("Sin exámenes a rendir.");
+				} else {
+					System.out.println("Materias a rendir examen: " + (13 - materiasExoneradas));					
+				}
+			} else {
+				Custom.printMensaje("Juicio del alumno " + notasOp2[i][0][0] + ": Recurso de año.");
+			}
+		}
 		
-		return null;
 	}
 	
 	

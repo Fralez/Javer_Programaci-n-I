@@ -27,7 +27,7 @@ public class Menu {
 					opcion2 = Opciones.opcionDos(etiqueta, asignaturas);
 					break;
 				case "3":
-					Opciones.opcionTres(opcion1, opcion2, asignaturas);
+					Opciones.opcionTres(opcion1, opcion2, asignaturas, etiqueta);
 					break;
 				case "0":
 					menu = false;
