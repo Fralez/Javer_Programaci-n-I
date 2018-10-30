@@ -467,7 +467,7 @@ public class Opciones {
 			System.out.println("El promedio más alto es del alumno " + nombreDeAlumnoOp2 +  ": " + promedioMasAltoOp2);
 		}
 			
-		falloCorrespondienteOp2(opcion2);
+		falloCorrespondienteOp2(opcion2, etiqueta);
 
 	}
 	
@@ -501,7 +501,7 @@ public class Opciones {
 	
 	//Métodos de Fallos
 	
-	public static void falloCorrespondienteOp2(String[][][] notasOp2) {
+	public static void falloCorrespondienteOp2(String[][][] notasOp2, String etiqueta) {
 		//NotasOp1 - 0-length: Alumno / 0: Nombre ; 1-12: Nota / 0: Nota ; 1: Inasistencias
 		for (int i = 0; i < notasOp2.length; i++) {
 			int materiasExoneradas = 0; //En esta variable se guardan la cantidad de materias altas
@@ -512,16 +512,28 @@ public class Opciones {
 				}
 			}
 			//Ahora, si las materias exoneradas son mayores a la mitad más 1 de las materias (7), pase a 2ndo y cantidad de exámenes a rendir.
-			if (materiasExoneradas >= 7) {
-				Custom.printMensaje("Juicio del alumno " + notasOp2[i][0][0] + ": Pase a segundo año.");
-				if (materiasExoneradas == 0) {
-					System.out.println("Sin exámenes a rendir.");
+			if (etiqueta.equals("Adscripto")) {
+				if (materiasExoneradas >= 7) {
+					System.out.println("entre a ADSCRIPTOS"); //TODO
+					Custom.printMensaje("Juicio del alumno " + notasOp2[i][0][0] + ": Pase a segundo año.");
+					if (materiasExoneradas == 0) {
+						System.out.println("Sin exámenes a rendir.");
+					} else {
+						System.out.println("Materias a rendir examen: " + (13 - materiasExoneradas));					
+					}
 				} else {
-					System.out.println("Materias a rendir examen: " + (13 - materiasExoneradas));					
+					Custom.printMensaje("Juicio del alumno " + notasOp2[i][0][0] + ": Recurso de año.");
 				}
 			} else {
-				Custom.printMensaje("Juicio del alumno " + notasOp2[i][0][0] + ": Recurso de año.");
+				if (materiasExoneradas == 1) {
+					System.out.println("entre a Profes"); //TODO
+					Custom.printMensaje("Juicio del alumno " + notasOp2[i][0][0] + ": Pase a segundo año.");
+				} else {
+					Custom.printMensaje("Juicio del alumno " + notasOp2[i][0][0] + ": Recurso de materia.");
+				}
 			}
+			
+			
 		}
 		
 	}
