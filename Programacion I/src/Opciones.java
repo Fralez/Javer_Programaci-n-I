@@ -1,4 +1,3 @@
-//Working
 public class Opciones {
 	
 	//*********************************************************************************
@@ -8,7 +7,7 @@ public class Opciones {
 		
 		String[][] alumnos = {}; //Se crean los alumnos como vacíos así el return reacciona correctamente
 		
-		if (etiqueta.equals("Adscripto") || etiqueta.equals("Admin")){
+		if (etiqueta.equals("Adscripto")){
 			
 			Custom.printMensaje("Bienvenido, Adscripto!");
 			
@@ -514,7 +513,6 @@ public class Opciones {
 			//Ahora, si las materias exoneradas son mayores a la mitad más 1 de las materias (7), pase a 2ndo y cantidad de exámenes a rendir.
 			if (etiqueta.equals("Adscripto")) {
 				if (materiasExoneradas >= 7) {
-					System.out.println("entre a ADSCRIPTOS"); //TODO
 					Custom.printMensaje("Juicio del alumno " + notasOp2[i][0][0] + ": Pase a segundo año.");
 					if (materiasExoneradas == 0) {
 						System.out.println("Sin exámenes a rendir.");
@@ -526,7 +524,6 @@ public class Opciones {
 				}
 			} else {
 				if (materiasExoneradas == 1) {
-					System.out.println("entre a Profes"); //TODO
 					Custom.printMensaje("Juicio del alumno " + notasOp2[i][0][0] + ": Pase a segundo año.");
 				} else {
 					Custom.printMensaje("Juicio del alumno " + notasOp2[i][0][0] + ": Recurso de materia.");

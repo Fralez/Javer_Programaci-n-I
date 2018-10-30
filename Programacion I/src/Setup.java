@@ -15,10 +15,10 @@ public class Setup {
 					Matrix.llenarUsuario(matriz, i, "FraqueDanilo", "fraquito123", "Programación");					
 					break;
 				case 2:
-					Matrix.llenarUsuario(matriz, i, "GonzálezFranco", "un12profePLS", "Adscripto");
+					Matrix.llenarUsuario(matriz, i, "GonzálezFranco", "un12profePls", "Adscripto");
 					break;
 				case 3:
-					Matrix.llenarUsuario(matriz, i, "BonillaAndrés", "buñuelo456", "Computación");
+					Matrix.llenarUsuario(matriz, i, "PablandaMirito", "contranda", "TallerMantenimiento");
 					break;
 				default:
 					//PD: Los usuarios registrados que vienen por defecto son los que se añaden aquí, si se quisiera esto se podría ampliar, pero no es requerido.

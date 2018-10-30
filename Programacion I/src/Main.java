@@ -7,8 +7,7 @@ public class Main {
 								   {"Geometría", "3"}, {"Biología", "3"}, {"SistemasOperativos", "2"}, {"Física", "3"},
 								   {"TallerMantenimiento", "4"},{"Electricidad", "3"}, {"Matemática", "3"}, {"APT", "3"} };
 		
-		String[][] usuariosRegistrados = Setup.MatrizUsuariosRegistrados(); // Este método crea la matriz de usuarios
-																			// registrados
+		String[][] usuariosRegistrados = Setup.MatrizUsuariosRegistrados(); // Este método crea la matriz de usuarios registrados
 		
 		String usuario = Log.In(usuariosRegistrados); // Acá guardamos el resultado del logIn
 
