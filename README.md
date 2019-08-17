@@ -1,2 +1,2 @@
-# Javer_Programación-I
-Repo de Javer, un gestor de alumnos programado en Java.
+# Javer - Proyecto final de Programación I
+Javer, un gestor de alumnos programado en Java.
